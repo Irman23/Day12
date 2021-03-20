@@ -1,31 +1,27 @@
-function sumFibonacci(num){
-    var fib, fib1 = 1, fib2 = 0;
-    if(num < 0){
+function sumFibonacci(num) {
+    if (num < 0) {
         return 0;
-
-    }else if (num <= 1){
-        return 1;
-       
-
-
-    }else {
-        for (var i = 1; i < num; i++) {
-            fib = fib1 + fib2;
-            fib2 = fib1;
-            fib1 = fib;
-
-        }
-        return fib;
-        
+    } else if (num <= 1)
+    return 1;
+    var fib = [];
+    fib[0] = 1;
+    fib[1] = 1;
+    for(var i = 2; i <= num; i++) {
+        fib[i] = fib[i - 2] + fib[i - 1]; 
     }
-    
+    fib = fib.filter(function (val) {
+        return val % 2 !== 0 && val <= num;
+
+    });
+    fib = fib.reduce(function(a, b) {
+        return a + b;
+
+    });
+    return fib;
 }
-
-
 console.log(sumFibonacci(1));
 console.log(sumFibonacci(10));
 console.log(sumFibonacci(20));
 console.log(sumFibonacci(4));
 console.log(sumFibonacci(-5));
-
 module.exports = sumFibonacci;
